@@ -30,8 +30,8 @@ public class MemberDAOTest {
 	{
 		MemberDTO dto = new MemberDTO();
 		
-		dto.setUserid("user00");
-		dto.setUserpw("user00");
+		dto.setUserid("user01");
+		dto.setUserpw("user01");
 		dto.setUsername("pajamasi");
 		dto.setEmail("pajamasi@naver.com");
 		
