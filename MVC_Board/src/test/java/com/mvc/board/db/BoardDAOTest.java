@@ -1,14 +1,20 @@
 package com.mvc.board.db;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.mvc.board.BoardController;
 import com.mvc.board.DAO.BoardDAO;
 import com.mvc.board.DTO.BoardDTO;
+import com.mvc.board.DTO.Criteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -17,6 +23,8 @@ public class BoardDAOTest {
 
 	@Inject
 	private BoardDAO dao;
+	
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	@Test
 	public void testCreate() throws Exception
@@ -52,6 +60,20 @@ public class BoardDAOTest {
 	}
 	
 	
+	@Test
+	public void testListPage() throws Exception
+	{
+		Criteria cri = new Criteria();
+		cri.setPage(2);
+		cri.setPerPageNum(20);
+		
+		List<BoardDTO> list = dao.listCriteriaPage(cri);
+		
+		for(BoardDTO dto : list)
+		{
+			logger.info(dto.getBno()+" : "+dto.getTitle());
+		}
+	}
 	
 	
 }

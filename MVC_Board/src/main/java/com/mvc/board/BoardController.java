@@ -1,5 +1,6 @@
 package com.mvc.board;
 
+import org.apache.ibatis.executor.ReuseExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,35 @@ public class BoardController {
 	{
 		model.addAttribute(service.read(bno));
 	}
+	
+	@RequestMapping(value = "/remove", method = RequestMethod.POST)
+	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception
+	{
+		service.delete(bno);
+		
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/board/listAll";
+	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void modifyGet(int bno, Model model)throws Exception
+	{
+		BoardDTO dto = service.read(bno);
+		model.addAttribute(dto);
+	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modifyPost(BoardDTO dto, RedirectAttributes rttr)throws Exception
+	{
+		logger.info("modify post");
+		
+		service.update(dto);
+		
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/board/listAll";
+	}
+	
 	
 }

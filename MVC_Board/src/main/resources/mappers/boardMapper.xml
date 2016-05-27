@@ -47,5 +47,16 @@
  		bno desc, regdate desc
 	</select>
 	
-	
+	<select id="listPage" resultType="com.mvc.board.DTO.BoardDTO">
+		SELECT
+			bno, title, content, writer, regdate, viewcnt
+		FROM
+			tbl_board
+		WHERE
+			bno > 0
+		ORDER BY
+			bno desc, regdate desc
+		LIMIT
+			#{pageStart}, #{perPageNum}
+	</select>
 </mapper>

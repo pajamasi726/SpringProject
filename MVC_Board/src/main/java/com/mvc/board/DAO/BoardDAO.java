@@ -3,6 +3,7 @@ package com.mvc.board.DAO;
 import java.util.List;
 
 import com.mvc.board.DTO.BoardDTO;
+import com.mvc.board.DTO.Criteria;
 
 public interface BoardDAO {
 	
@@ -20,4 +21,10 @@ public interface BoardDAO {
 	
 	// 전체 리스트
 	public List<BoardDTO>listAll()throws Exception;
+	
+	// 페이지 처리
+	public List<BoardDTO> listPage(int Page)throws Exception;
+	
+	// 페이지 처리
+	public List<BoardDTO> listCriteriaPage(Criteria cri)throws Exception;
 }

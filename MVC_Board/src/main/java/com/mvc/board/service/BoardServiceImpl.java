@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mvc.board.DAO.BoardDAO;
 import com.mvc.board.DTO.BoardDTO;
+import com.mvc.board.DTO.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -39,5 +40,12 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardDTO> listAll() throws Exception {
 		return dao.listAll();
 	}
+
+	@Override
+	public List<BoardDTO> listCriteria(Criteria cri) throws Exception {
+		return dao.listCriteriaPage(cri);
+	}
+	
+	
 	
 }
